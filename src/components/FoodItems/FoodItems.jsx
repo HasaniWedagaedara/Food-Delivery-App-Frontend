@@ -5,7 +5,8 @@ import { StoreContext } from '../../context/StoreContext';
 
 const FoodItems = ({id,name,price, description, image}) => {
 
-    const {cartItems,addTocart,removeFromcart}=useContext(StoreContext);
+    const {cartItems,addToCart,removeFromCart}=useContext(StoreContext);
+    //console.log("FoodItems render:", id, cartItems);
 
   return (
     <div className="food-item">
@@ -16,20 +17,20 @@ const FoodItems = ({id,name,price, description, image}) => {
             className="add"
             src={assets.add_icon_white}
             alt="Add Icon"
-            onClick={() => addTocart(id)}
+            onClick={() => addToCart(id)}
           />
         ) : (
           <div className="food-item-counter">
             <img
               src={assets.remove_icon_red}
               alt="Remove Icon"
-              onClick={() => removeFromcart(id)}
+              onClick={() => removeFromCart(id)}
             />
             <p>{cartItems[id]}</p>
             <img
               src={assets.add_icon_green}
               alt="Add Icon"
-              onClick={() => addTocart(id)}
+              onClick={() => addToCart(id)}
             />
           </div>
         )}
