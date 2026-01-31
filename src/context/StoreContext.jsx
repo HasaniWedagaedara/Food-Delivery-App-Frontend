@@ -1,11 +1,18 @@
 import { createContext, useState } from "react";
-import { food_list } from "../assets/frontend_assets/assets";
+import { useEffect } from "react";
+import axios from "axios"
+
+
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItem] = useState({});
+  const url = import.meta.env.VITE_BACKEND_URL;
+  const [token,setToken]= useState("");
+  const [food_list,setFoodList]=useState([]);
+
 
   const addToCart = (itemId) => {
     if (!cartItems[itemId]) {
@@ -22,7 +29,7 @@ const StoreContextProvider = (props) => {
   const getTotalCartAmount = () => {
     let totalAmount = 0;
     for (const item in cartItems) {
-      if (cartItems[item] <= 0) {
+      if (cartItems[item] > 0) {
         let itemInfo = food_list.find((product) => product._id === item);
         totalAmount += itemInfo.price * cartItems[item];
       }
@@ -30,13 +37,34 @@ const StoreContextProvider = (props) => {
     return totalAmount;
   };
 
+  const fetchFoodList = async ()=>{
+    const response = await axios.get(`${url}/api/food/list`);
+    setFoodList(response.data.data);
+  }
+  
+
+  //when reload not logout
+  useEffect(()=>{
+
+    async function loadData(){
+      await fetchFoodList();
+      if (localStorage.getItem("token")) {
+        setToken(localStorage.getItem("token"));
+      }
+    }
+    loadData();
+  },[])
+
   const contextValue = {
     food_list,
     cartItems,
     setCartItem,
     addToCart,
     removeFromCart,
-    getTotalCartAmount
+    getTotalCartAmount,
+    url,
+    token,
+    setToken
   };
 
   return (

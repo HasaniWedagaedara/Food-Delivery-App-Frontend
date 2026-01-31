@@ -5,11 +5,12 @@ import FoodItems from "../FoodItems/FoodItems";
 
 const FoodDisplay = ({ category }) => {
   const { food_list } = useContext(StoreContext);
+  console.log(food_list);
   return (
     <div className="food-display" id="food-display">
       <h2>Top Dishes Near You </h2>
       <div className="food-display-list">
-        {food_list.map((item, index) => {
+        { food_list.map((item, index) => {
           if ((category === "All" || category === item.category)) {
             return (
               <FoodItems
