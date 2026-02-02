@@ -4,6 +4,7 @@
     background: url('/header_img.png') no-repeat;
     background-size: contain;
     position: relative;
+    border-radius: 30px;
 }
 .header-contents{
     position: absolute;
@@ -27,9 +28,9 @@
 }
 .header-contents button{
     padding: 1vw 2.3vw;
-    font-size: max(1vw, 13px);
+    font-size: max(1vw, 18px);
     background-color: white;
-    color: #747474;
+    color: tomato;
     border: none;
     border-radius: 50px;
     cursor: pointer;

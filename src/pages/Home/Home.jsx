@@ -14,9 +14,9 @@ const Home = () => {
       <Header />
       <ExploreMenu category={category} setCategory={setCategory} />
       <FoodDisplay category={category} />
-      <MobileApp/>
+      {/* <MobileApp/> */}
     </div>
-  )
+  );
 }
 
 export default Home
