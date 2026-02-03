@@ -5,7 +5,8 @@
 }
 .explore-menu h1{
     font-weight: 500;
-    color:#262626
+    color:#262626;
+    margin-top: 40px;
 }
 .explore-menu-text{
     color: #808080;
